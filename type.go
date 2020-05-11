@@ -47,6 +47,8 @@ func ImageType(name string) bimg.ImageType {
 		return bimg.SVG
 	case "pdf":
 		return bimg.PDF
+	case "heif":
+		return bimg.HEIF
 	default:
 		return bimg.UNKNOWN
 	}

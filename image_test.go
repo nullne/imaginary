@@ -5,6 +5,18 @@ import (
 	"testing"
 )
 
+func BenchmarkImageResze(b *testing.B) {
+	opts := ImageOptions{Width: 640, Height: 640, Quality: 80, Type: "jpeg", StripMetadata: true}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		buf, _ := ioutil.ReadFile("/tmp/sample.jpg")
+		_, err := Crop(buf, opts)
+		if err != nil {
+			b.Fatal(err)
+		}
+	}
+}
+
 func TestImageResize(t *testing.T) {
 	t.Run("Width and Height defined", func(t *testing.T) {
 		opts := ImageOptions{Width: 300, Height: 300}
